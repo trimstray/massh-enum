@@ -335,8 +335,8 @@ function _sprintf() {
       # Process id of the previous running command.
       local _pid="$_s_info"
 
-      # local _sc='░▒▓█'
-      local _sc='-\|/'
+      local _sc='░▒▓█'
+      # local _sc='-\|/'
 
       # Verify that the process is still running.
       local _n="0"
@@ -855,7 +855,8 @@ function __main__() {
     _exit_ "1"
   # Ends if no parameter is specified.
   elif [[ "${#__script_params[@]}" -eq 0 ]] ; then
-    _exit_ "0"
+    # _exit_ "0"
+    true
   fi
 
   eval set -- "$_GETOPT_PARAMS"
