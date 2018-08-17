@@ -438,6 +438,9 @@ function __main__() {
 
         export _users_wordlist="${2}"
 
+        if [[ ! -e "$_users_wordlist" ]] ; then
+          printf "bad --users value\\n" ; _exit_ "1" ; fi
+
         shift 2 ;;
 
       *)
@@ -482,7 +485,7 @@ function __main__() {
 
         printf "error of argument value: '%s' is unset or empty" "$i"
 
-        _exit_ 0
+        _exit_ "1"
 
       fi
 
