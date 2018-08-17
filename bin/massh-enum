@@ -766,8 +766,6 @@ function __main__() {
   readonly _log_stdout="${_log_directory}/stdout.log"
   readonly _log_path="${_log_directory}/${_log_file}"
 
-  readonly _scan_output="${_log_directory}/scan.out"
-
   # We check if we are a root user.
   if [[ "$EUID" -ne 0 ]] ; then
 
