@@ -367,7 +367,7 @@ function _sprintf() {
       # If the end, we clean.
       printf "\\r" ; tput sgr0
 
-    else
+   else
 
       # Normal execution if:
       # - spinner has not been called
@@ -432,20 +432,6 @@ function _sprintf() {
     fi
 
   fi
-
-  # shellcheck disable=SC2034,SC2154
-  if [[ "$mixed_content_state" -eq 1 ]] && [[ -s "$_scan_output" ]] ; then
-
-    _fd_empty="1"
-
-  fi
-
-  # shellcheck disable=SC2154
-  sed 's/^/         › /' "$_scan_output" | \
-  sed 's/\r//' | grep "› ."
-
-  # shellcheck disable=SC2154
-  : >"$_scan_output"
 
   return "$_STATE"
 
