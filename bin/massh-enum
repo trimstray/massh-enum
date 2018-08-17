@@ -787,6 +787,9 @@ function __main__() {
   # shellcheck disable=SC2034
   s_color="true"
 
+  # Path to init.py.
+  local _penum="${_rel}/lib/init.py"
+
   # Defaults for users wordlist.
   local users_wordlist_state=0
   local users_wordlist=""
@@ -955,11 +958,11 @@ function __main__() {
 
   fi
 
-  while read -r i ; do
+  while read -r user ; do
 
-    if [[ $i == * ]] ; then
+    if [[ $user == * ]] ; then
 
-      echo "$i"
+      python "$_penum" --port 22 "$host" "$user"
 
     fi
 
