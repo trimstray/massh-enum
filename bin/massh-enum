@@ -789,6 +789,10 @@ function __main__() {
   # shellcheck disable=SC2034
   s_color="true"
 
+  # Defaults for users wordlist.
+  local users_wordlist_state=0
+  local users_wordlist=""
+
   # We place here used commands at script runtime, as strings to anything
   # unnecessarily run.
   readonly commands=(basename dirname stat ps date grep cut sed awk chown \
@@ -839,7 +843,7 @@ function __main__() {
   # Specifies the call parameters of the script, the exact description
   # can be found in _help_ and file README.md.
   local _short_opt=""
-  local _long_opt="help"
+  local _long_opt="help,users:"
 
   _GETOPT_PARAMS=$(getopt -o "${_short_opt}" --long "${_long_opt}" \
                    -n "${_init_name}" -- "${__script_params[@]}")
@@ -869,6 +873,14 @@ function __main__() {
         _help_
 
         shift ; _exit_ "0" ;;
+
+      --users)
+
+        export users_wordlist_state=1
+
+        export _users_wordlist="${2}"
+
+        shift 2 ;;
 
       *)
 
@@ -944,6 +956,16 @@ function __main__() {
     done
 
   fi
+
+  while read -r i ; do
+
+    if [[ $i == * ]] ; then
+
+      echo "$i"
+
+    fi
+
+  done < "${_rel}/${_users_wordlist}"
 
   # ````````````````````````````````````````````````````````````````````````````
 
