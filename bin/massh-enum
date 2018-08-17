@@ -481,8 +481,12 @@ function __main__() {
 
   local _destination="$_hosts_wordlist"
 
+  printf "› Generating a list of hosts\\n"
+
   local _ip_list=("$(nmap "$_destination" -p 22 --open -T5 | \
                   grep "Nmap scan report for" | awk '{print $5}')")
+
+  printf "› Username Enumeration\\n"
 
   for ipaddr in ${_ip_list[*]} ; do
 
@@ -496,9 +500,17 @@ function __main__() {
 
           if [[ "$r_state" -eq 0 ]] ; then
 
-            printf "%s for %s " "$user" "$ipaddr"
+            printf "host: \\e[0;38m%s\\e[m, " "$ipaddr"
+            printf "user: \\e[1;36m%s\\e[m, " "$user"
+            printf "status: \\e[1;31m%s\\e[m\\n" "found"
 
-            printf "%s\\n" "found"
+          else
+
+            # printf "host: \\e[0;38m%s\\e[m, " "$ipaddr"
+            # printf "user: \\e[1;36m%s\\e[m, " "$user"
+            # printf "status: \\e[0;32m%s\\e[m\\n" "not found"
+
+            true
 
           fi
 
