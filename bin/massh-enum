@@ -161,9 +161,6 @@ function _get_trap_SIG() {
     #   - local _to_unset=("$IFS_ORIG" "$IFS_HACK" "$IFS" "$PATH")
     local _to_unset=("$PATH")
 
-    # Running tasks before the end of the script.
-    _after_init
-
     # shellcheck disable=SC2034
     for i in "${_to_unset[@]}" ; do unset i ; done
 
