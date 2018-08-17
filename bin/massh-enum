@@ -223,8 +223,8 @@ function _init_cmd() {
 
     # Execute command and exit save to file.
     # shellcheck disable=SC2154
-    # $_cmd >"/dev/null" 2>&1 &
-    $_cmd &
+    $_cmd >"/dev/null" 2>&1 &
+    # $_cmd &
 
     # We keep pid of the last command.
     _pid="$!"
@@ -235,11 +235,13 @@ function _init_cmd() {
 
     if [[ "$_state" -eq 0 ]] ; then
 
+      r_state=0
+
       break
 
     else
 
-      true
+      r_state=1
 
     fi
 
@@ -326,6 +328,9 @@ function __main__() {
     _exit_ "1"
 
   fi
+
+  # Command status.
+  local r_state=0
 
   # Path to init.py.
   local _penum="${_rel}/lib/init.py"
@@ -490,9 +495,15 @@ function __main__() {
 
         if [[ $user == * ]] ; then
 
-          printf "%s for %s " "$user" "$ipaddr"
-
           _init_cmd "python $_penum --port 22 $ipaddr $user"
+
+          if [[ "$r_state" -eq 0 ]] ; then
+
+            printf "%s for %s " "$user" "$ipaddr"
+
+            printf "%s\\n" "found"
+
+          fi
 
         fi
 
