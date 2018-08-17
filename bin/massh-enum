@@ -438,9 +438,6 @@ function __main__() {
 
         export _users_wordlist="${2}"
 
-        if [[ ! -e "$_users_wordlist" ]] ; then
-          printf "bad --users value\\n" ; _exit_ "1" ; fi
-
         shift 2 ;;
 
       *)
@@ -490,6 +487,14 @@ function __main__() {
       fi
 
     done
+
+  fi
+
+  if [[ ! -e "${_rel}/${_users_wordlist}" ]] ; then
+
+    printf "bad --users value\\n"
+
+    _exit_ "1"
 
   fi
 
