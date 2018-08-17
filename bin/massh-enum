@@ -520,8 +520,7 @@ function __main__() {
           if [[ "$r_state" -eq 0 ]] ; then
 
             printf "host: \\e[0;38m%s (p:%s)\\e[m, " "$ipaddr" "$_port"
-            printf "user: \\e[1;36m%s\\e[m, " "$user"
-            printf "status: \\e[1;31m%s\\e[m\\n" "found"
+            printf "found user: \\e[1;36m%s\\e[m\\n" "$user"
 
           else
 
