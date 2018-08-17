@@ -332,18 +332,21 @@ function __main__() {
   # Path to init.py.
   local _penum="${_rel}/lib/init.py"
 
-  # Defaults for hosts wordlist.
+  # Defaults values for hosts wordlist.
   local hosts_wordlist_state=0
-  local hosts_wordlist=""
+  local _hosts_wordlist=""
 
-  # Defaults for users wordlist.
+  # Defaults values for port.
+  local port_state=0
+  local _port=22
+
+  # Defaults valuse for users wordlist.
   local users_wordlist_state=0
-  local users_wordlist=""
+  local _users_wordlist=""
 
   # We place here used commands at script runtime, as strings to anything
   # unnecessarily run.
-  readonly commands=(basename dirname stat ps date grep cut sed awk chown \
-                     chmod mkdir python)
+  readonly commands=(basename dirname python nmap)
 
   # If you intend to specify the full path to the command we do it like:
   # readonly exec_gzip="/bin/gzip"
@@ -383,7 +386,7 @@ function __main__() {
   # Specifies the call parameters of the script, the exact description
   # can be found in _help_ and file README.md.
   local _short_opt=""
-  local _long_opt="help,hosts:,users:"
+  local _long_opt="help,hosts:,port:,users:"
 
   _GETOPT_PARAMS=$(getopt -o "${_short_opt}" --long "${_long_opt}" \
                    -n "${_init_name}" -- "${__script_params[@]}")
@@ -418,6 +421,14 @@ function __main__() {
         export hosts_wordlist_state=1
 
         export _hosts_wordlist="${2}"
+
+        shift 2 ;;
+
+      --port)
+
+        export port_state=1
+
+        export _port="${2}"
 
         shift 2 ;;
 
@@ -483,7 +494,7 @@ function __main__() {
 
   printf "› Generating a list of hosts\\n"
 
-  local _ip_list=("$(nmap "$_destination" -p 22 --open -T5 | \
+  local _ip_list=("$(nmap "$_destination" -p "$_port" --open -T5 | \
                   grep "Nmap scan report for" | awk '{print $5}')")
 
   printf "› Username Enumeration\\n"
@@ -500,15 +511,11 @@ function __main__() {
 
           if [[ "$r_state" -eq 0 ]] ; then
 
-            printf "host: \\e[0;38m%s\\e[m, " "$ipaddr"
+            printf "host: \\e[0;38m%s (p:%s)\\e[m, " "$ipaddr" "$_port"
             printf "user: \\e[1;36m%s\\e[m, " "$user"
             printf "status: \\e[1;31m%s\\e[m\\n" "found"
 
           else
-
-            # printf "host: \\e[0;38m%s\\e[m, " "$ipaddr"
-            # printf "user: \\e[1;36m%s\\e[m, " "$user"
-            # printf "status: \\e[0;32m%s\\e[m\\n" "not found"
 
             true
 
