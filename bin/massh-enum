@@ -294,66 +294,6 @@ function _help_() {
 
 }
 
-# ``````````````````````````````````````````````````````````````````````````````
-# Function name: _before_init()
-#
-# Description:
-#   INFOs performed before calling the __main__ function, e.g.
-#   attaching files, cleaning logs (if you need a function that will deal
-#   with it, put it here).
-#
-# Usage:
-#   _before_init
-#
-# Examples:
-#   _before_init
-#
-
-function _before_init() {
-
-  local _FUNCTION_ID="_before_init"
-  local _STATE=0
-
-  # shellcheck disable=2154
-  cd "$_init_directory" || _exit
-
-  # shellcheck disable=SC2154
-  : >"$_log_stdout"
-
-  # Invisible cursor.
-  # tput civis
-
-  return $_STATE
-
-}
-
-# ``````````````````````````````````````````````````````````````````````````````
-# Function name: _after_init()
-#
-# Description:
-#   INFOs performed after calling the __main__ function, e.g.
-#   cleaning logs (if you need a function that will deal with it,
-#   put it here).
-#
-# Usage:
-#   _after_init
-#
-# Examples:
-#   _after_init
-#
-
-function _after_init() {
-
-  local _FUNCTION_ID="_after_init"
-  local _STATE=0
-
-  # shellcheck disable=2154
-  cd "$_init_directory" || _exit
-
-  return $_STATE
-
-}
-
 
 ################################################################################
 ######################### Main function (script init) ##########################
@@ -363,6 +303,9 @@ function __main__() {
 
   local _FUNCTION_ID="__main__"
   local _STATE="0"
+
+  # shellcheck disable=2154
+  cd "$_init_directory" || _exit
 
   # Stores the current date.
   readonly _cdate=$(date +%Y%m%d)
