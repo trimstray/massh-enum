@@ -276,10 +276,13 @@ function _help_() {
     $_init_name <option|long-option>
 
   Examples:
-    $_init_name --help
+    $_init_name --hosts 10.240.30.0/24 --users wordlist/users
 
   Options:
-        --help                                show this message
+        --help                show this message
+        --hosts               set destination (ip or ip-range)
+        --port                set port number (default: 22)
+        --users               set users list from file
 
 
   This program comes with ABSOLUTELY NO WARRANTY.
