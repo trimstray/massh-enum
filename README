@@ -1,0 +1,20 @@
++----------------+
+| massh-enum 1.0 |
++----------------+
+
+        Automate OpenSSH 7.x Username Enumeration.
+
+        It base on Matthew Daley Python script <https://packetstormsecurity.com/files/148955/openssh7-enumerate.txt>
+
+        License: GPLv3, <http://www.gnu.org/licenses/>
+
+
+How it work?
+
+./bin/massh-enum --hosts 10.240.20.0/28 --users wordlists/users
+› Generating a list of hosts
+› Username Enumeration
+host: 10.240.20.1 (p:22), found user: root
+host: 10.240.20.1 (p:22), found user: supervisor
+host: 10.240.20.2 (p:22), found user: root
+host: x33con.info (p:22), found user: root
