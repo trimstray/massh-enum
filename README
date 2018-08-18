@@ -4,7 +4,7 @@
 
         OpenSSH 7.x Mass Username Enumeration.
 
-        This script contains Matthew Daley Python script <https://packetstormsecurity.com/files/148955/openssh7-enumerate.txt>
+        This script contains Matthew Daley Python script <https://bugfuzz.com/stuff/ssh-check-username.py>
 
         License: GPLv3, <http://www.gnu.org/licenses/>
 
@@ -25,7 +25,6 @@ example, a truncated packet), and:
 
 More information about this vulnerability:
 * http://seclists.org/oss-sec/2018/q3/124
-*
 
 How it works?
 
