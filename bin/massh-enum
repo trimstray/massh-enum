@@ -14,6 +14,9 @@
 #
 #   See README.md file for more information.
 #
+#   This script contains Matthew Daley Python script:
+#   <bugfuzz.com/stuff/ssh-check-username.py>
+#
 # License:
 #
 #   massh-enum, Copyright (C) 2018  Michał Żurawski
