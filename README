@@ -9,12 +9,36 @@
         License: GPLv3, <http://www.gnu.org/licenses/>
 
 
+Description
+
+OpenSSH versions 2.3 up to 7.4 suffer from a username enumeration vulnerability.
+
+The attacker can try to authenticate a user with a malformed packet (for
+example, a truncated packet), and:
+
+- if the user is invalid (it does not exist), then userauth_pubkey()
+  returns immediately, and the server sends an SSH2_MSG_USERAUTH_FAILURE
+  to the attacker;
+
+- if the user is valid (it exists), then sshpkt_get_u8() fails, and the
+  server calls fatal() and closes its connection to the attacker.
+
+More information about this vulnerability:
+* http://seclists.org/oss-sec/2018/q3/124
+*
+
 How it works?
 
-./bin/massh-enum --hosts 10.240.20.0/28 --users wordlists/users
+# ./bin/massh-enum --hosts 10.240.20.0/28 --users wordlists/users
 › Generating a list of hosts
 › Username Enumeration
 host: 10.240.20.1 (p:22), found user: root
 host: 10.240.20.1 (p:22), found user: supervisor
 host: 10.240.20.2 (p:22), found user: root
 host: x33con.info (p:22), found user: root
+
+Requirements
+
+- Bash (testing on 4.4.19)
+- Python (testing on 2.7)
+- Nmap (testing on 7.70)
