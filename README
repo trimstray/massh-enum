@@ -4,12 +4,12 @@
 
         OpenSSH 7.x Mass Username Enumeration.
 
-        It based on Matthew Daley Python script <https://packetstormsecurity.com/files/148955/openssh7-enumerate.txt>
+        This script contains Matthew Daley Python script <https://packetstormsecurity.com/files/148955/openssh7-enumerate.txt>
 
         License: GPLv3, <http://www.gnu.org/licenses/>
 
 
-How it work?
+How it works?
 
 ./bin/massh-enum --hosts 10.240.20.0/28 --users wordlists/users
 › Generating a list of hosts
