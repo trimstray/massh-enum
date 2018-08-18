@@ -2,7 +2,7 @@
 | massh-enum 1.0 |
 +----------------+
 
-        Automate OpenSSH 7.x Username Enumeration.
+        OpenSSH 7.x Mass Username Enumeration.
 
         It base on Matthew Daley Python script <https://packetstormsecurity.com/files/148955/openssh7-enumerate.txt>
 
