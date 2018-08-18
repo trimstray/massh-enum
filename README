@@ -2,7 +2,7 @@
 | massh-enum 1.0 |
 +----------------+
 
-        OpenSSH 7.x Mass Username Enumeration.
+        OpenSSH 2.3 up to 7.4 Mass Username Enumeration.
 
         This script contains Matthew Daley Python script <https://bugfuzz.com/stuff/ssh-check-username.py>
 
