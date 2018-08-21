@@ -2,7 +2,7 @@
 | massh-enum 1.0 |
 +----------------+
 
-        OpenSSH 2.3 up to 7.4 Mass Username Enumeration.
+        OpenSSH 2.3 up to 7.4 Mass Username Enumeration (CVE-2018-15473)
 
         This script contains Matthew Daley Python script <https://bugfuzz.com/stuff/ssh-check-username.py>
 
@@ -24,6 +24,7 @@ example, a truncated packet), and:
   server calls fatal() and closes its connection to the attacker.
 
 More information about this vulnerability:
+* https://nvd.nist.gov/vuln/detail/CVE-2018-15473
 * http://seclists.org/oss-sec/2018/q3/124
 
 How it works?
