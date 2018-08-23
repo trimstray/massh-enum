@@ -286,6 +286,7 @@ function _help_() {
         --hosts               set destination (ip or ip-range)
         --port                set port number (default: 22)
         --users               set users list from file
+        --output              set output in the grepable format
 
 
   This program comes with ABSOLUTELY NO WARRANTY.
@@ -392,7 +393,7 @@ function __main__() {
   # Specifies the call parameters of the script, the exact description
   # can be found in _help_ and file README.md.
   local _short_opt=""
-  local _long_opt="help,hosts:,port:,users:"
+  local _long_opt="help,hosts:,port:,users:,output:"
 
   _GETOPT_PARAMS=$(getopt -o "${_short_opt}" --long "${_long_opt}" \
                    -n "${_init_name}" -- "${__script_params[@]}")
@@ -443,6 +444,16 @@ function __main__() {
         export users_wordlist_state=1
 
         export _users_wordlist="${2}"
+
+        shift 2 ;;
+
+      --output)
+
+        export output_state=1
+
+        export _output="${2}"
+
+        : >"$_output"
 
         shift 2 ;;
 
@@ -513,6 +524,8 @@ function __main__() {
 
   printf "› Username Enumeration\\n"
 
+  local _count=1
+
   for ipaddr in ${_ip_list[*]} ; do
 
     if [[ ! -z "$ipaddr" ]] ; then
@@ -527,6 +540,18 @@ function __main__() {
 
             printf "host: \\e[0;38m%s (p:%s)\\e[m, " "$ipaddr" "$_port"
             printf "found user: \\e[1;36m%s\\e[m\\n" "$user"
+
+            if [[ ! -z "$_output" ]] ; then
+
+              printf "%s:%s:%s\\n" \
+                     "$_count" \
+                     "$ipaddr" \
+                     "$user" \
+                     >>"$_output"
+
+            fi
+
+            _count=$((_count + 1))
 
           else
 
