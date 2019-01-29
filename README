@@ -35,7 +35,6 @@ How it works?
 host: 10.240.20.1 (p:22), found user: root
 host: 10.240.20.1 (p:22), found user: supervisor
 host: 10.240.20.2 (p:22), found user: root
-host: x33con.info (p:22), found user: root
 
 Requirements
 
